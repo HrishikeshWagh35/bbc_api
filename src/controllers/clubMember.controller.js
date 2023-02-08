@@ -1,12 +1,11 @@
+const { DATE } = require("sequelize");
 const db = require("../models/index");
-const Clubs = db.clubs;
-
-const Op = db.Sequelize.Op;
+const MemberClubs = db.memberClubs;
 
 // Create and Save a new Club
 exports.create = (req, res) => {
     // Validate request
-    if (!req.body.name) {
+    if (!req.body.person_id) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -14,14 +13,14 @@ exports.create = (req, res) => {
     }
 
     // Create a Club
-    const club = {
-        name: req.body.name,
+    const memberClub = {
+        person_id: req.body.person_id,
+        company_id: req.body.company_id,
         createdAt: Date.now(),
-        photo: req.body.photo
     };
 
     // Save Club in the database
-    Clubs.create(club)
+    MemberClubs.create(memberClub)
         .then(data => {
             res.send(data);
         })

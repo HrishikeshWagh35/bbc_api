@@ -21,5 +21,7 @@ db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
 db.clubs = require("./clubs.model.js")(sequelize, Sequelize);
+db.members = require("./members.model")(sequelize, Sequelize);
+db.memberClubs = require("./clubMember.model")(sequelize, Sequelize);
 
 module.exports = db;
